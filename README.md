@@ -21,3 +21,23 @@ or similar to install the environment. If you are letting poetry manage the envi
 ```
 source $(poetry env info -p)/bin/activate 
 ```
+
+### Lisp in Lisp
+The whole of lisp is written in the Lisp Manual in terms of itself as 
+
+```
+eval[e;a] = [
+    atom[e] -> assoc[e;a];
+    atom[car[e]] -> [
+        eq[car[e]; QUOTE] -> cadr[e];
+        eq[car[e]; ATOM]   -> atom[eval[cadr[e]; a]];
+        eq[car[e]; EQ]     -> [eval[cadr[e]; a] = eval[caddr[e]; a]];
+        eq[car[e]; COND]   -> evcon[cdr[e]; a];
+        eq[car[e]; CAR]    -> car[eval[cadr[e]; a]];
+        eq[car[e]; CDR]    -> cdr[eval[cadr[e]; a]];
+        eq[car[e]; CONS]   -> cons[eval[cadr[e]; a]; eval[caddr[e]; a]];
+        T                  -> eval[cons[assoc[car[e]; a]; evlis[cdr[e]; a]]; a];
+    ];
+    eq[car[e]; LAMBDA]     -> 
+        eval[caddr[e]; append[pair[cadar[e]; evlis[cdr[e]; a]; a]]]
+]
