@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "hicopy"
+version = "0.1.0"
+description = "Homoiconic Python"
+authors = ["Stefan Wong <stfnwong@gmail.com>"]
+license = "ANY"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.24.0"
+pudb = "^2024.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
