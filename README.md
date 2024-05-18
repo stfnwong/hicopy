@@ -41,3 +41,21 @@ eval[e;a] = [
     eq[car[e]; LAMBDA]     -> 
         eval[caddr[e]; append[pair[cadar[e]; evlis[cdr[e]; a]; a]]]
 ]
+```
+
+
+### M-Expressions and S-Expressions
+
+Short version: M-Expressions (Meta Expressions) are the data oriented version and S-Expressions (Symbolic Expressions) are the code oriented version. The versions are semantically equivalent.
+
+
+M-Expression to S-Expression conversion (M on left, S on right)
+
+- `x` -> `X`
+- `car` -> `CAR`
+- `car[x]` -> `(CAR X)`
+- `T` -> `(QUOTE T)`
+- `ff [car[x]]` -> `(FF (CAR X))`
+- `[atom[x] -> x; T -> ff[car[x]]]` -> `(COND ((ATOM X) X) ((QUOTE T) (FF (CAR X))))`
+- `label[ff: L[[x]; atom[x] -> x; T -> ff[car[x]]]]` -> `(LABEL FF (LAMBDA (X) (COND (ATOM X) X) ((QUOTE T) (FF (CAR X)))))`
+
