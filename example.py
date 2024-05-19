@@ -17,21 +17,13 @@ example_inputs = [
     ["car", ["quote", [1000, 20]]],
     ["cdr", ["quote", [1000, 20, 1.1]]],
     ["car", ["car", ["cdr", ["cdr", ["cdr", ["quote", [1, 2, 10, [50, 100]]]]]]]],
+    ["cons", 1, ["quote", [10, 20]]],
+    ["cons", ["quote", [1, 2]], ["quote", [10, 20]]],  # [1, 2, 10, 20]
+    ["cond", [["eq", 1, 1], "true"], [["atom", ["quote", 2]], "false"], ["t", "default"]],
+    ["cond", [["atom", ["quote", 2]], "cake"], ["t", "default"]],
+    ["cond", [["atom", ["quote", [1, 2]]], "false"], ["t", "default"]],
 ]
 
-exp_responses = [
-    [],
-    42,
-    [10, 20],
-    True,
-    True,
-    False,
-    True,
-    False,
-    1000,
-    [20, 1.1],
-    50
-]
 
 
 

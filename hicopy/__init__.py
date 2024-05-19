@@ -20,7 +20,7 @@ def leval(x):
     )
     elif eq(car(x), "car"):     return car(leval(car(cdr(x))))
     elif eq(car(x), "cdr"):     return cdr(leval(car(cdr(x))))
-    elif eq(car(x), "cons"):    return cons(leval(car(cdr(x))), eval(car(cdr(cdr(x)))))
+    elif eq(car(x), "cons"):    return cons(leval(car(cdr(x))), leval(car(cdr(cdr(x)))))
     elif eq(car(x), "cond"):
         for i in cdr(x):
             if leval(car(i)):
