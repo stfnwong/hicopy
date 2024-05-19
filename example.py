@@ -22,6 +22,7 @@ example_inputs = [
 
 
 def main(examples: List[Any]) -> None:
+    #from pudb import set_trace; set_trace()
     for n, ex in enumerate(examples):
         try:
             print(f"{n}: [{ex}] -> {leval(ex)}")
