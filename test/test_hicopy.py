@@ -66,3 +66,41 @@ def test_eval_atom():
 
     assert leval(inp)       # Returns True
 
+
+
+
+def test_eval():
+    inputs = [
+        [atom],
+        42,
+        ["quote", [10, 20]],
+        ["atom", 1],
+        ["atom", ["quote", 1]],
+        ["atom", ["quote", [1, 2, 3]]],
+        ["eq", 1, 1],
+        ["eq", 1, 2],
+        ["car", ["quote", [1000, 20]]],
+        ["cdr", ["quote", [1000, 20, 1.1]]],
+        ["car", ["car", ["cdr", ["cdr", ["cdr", ["quote", [1, 2, 10, [50, 100]]]]]]]],
+    ]
+
+    exp_outputs = [
+        [],
+        42,
+        [10, 20],
+        True,
+        True,
+        False,
+        True,
+        False,
+        1000,
+        [20, 1.1],
+        50
+    ]
+
+    # Check we didn't fuck up the spec 
+    assert len(inputs) == len(exp_outputs)
+
+    for inp, exp_out in zip(inputs, exp_outputs):
+        assert leval(inp) == exp_out
+

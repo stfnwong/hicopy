@@ -19,6 +19,20 @@ example_inputs = [
     ["car", ["car", ["cdr", ["cdr", ["cdr", ["quote", [1, 2, 10, [50, 100]]]]]]]],
 ]
 
+exp_responses = [
+    [],
+    42,
+    [10, 20],
+    True,
+    True,
+    False,
+    True,
+    False,
+    1000,
+    [20, 1.1],
+    50
+]
+
 
 
 def main(examples: List[Any]) -> None:
