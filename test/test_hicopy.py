@@ -4,7 +4,9 @@ from hicopy import (
     atom,
     car,
     cdr,
-    leval
+    leval,
+    assoc,
+    pairlis
 )
 
 
@@ -76,6 +78,12 @@ def test_eval():
         ["cond", [["eq", 1, 1], "true"], [["atom", ["quote", 2]], "false"], ["t", "default"]],
         ["cond", [["atom", ["quote", 2]], "cake"], ["t", "default"]],
         ["cond", [["atom", ["quote", [1, 2]]], "false"], ["t", "default"]],
+        # assoc
+        assoc("a", [["a", 1], ["b", 2], ["c", 3]]),   # ["a", 1]
+        assoc("d", [["a", 1], ["b", 2], ["c", 3]]),   # []
+        # pairlis
+        pairlis(["x", "y"], [1, 2]),     # zip, so [[x, 1], [y, 2]]
+        pairlis(["x", "y"], [1, 2, 5]),  # zip, so [[x, 1], [y, 2]]
     ]
 
     exp_outputs = [
@@ -94,7 +102,13 @@ def test_eval():
         [[1, 2], 10, 20],
         "true",
         "cake",
-        "default"
+        "default",
+        # assoc
+        ["a", 1],
+        [],
+        # pairlis 
+        [["x", 1], ["y", 2]],
+        [["x", 1], ["y", 2]],
     ]
 
     # Check we didn't fuck up the spec
@@ -103,3 +117,26 @@ def test_eval():
     for inp, exp_out in zip(inputs, exp_outputs):
         assert leval(inp) == exp_out
 
+
+
+def test_assoc():
+    inputs = [
+        assoc("a", [["a", 1], ["b", 2], ["c", 3]]),   # ["a", 1]
+        assoc("d", [["a", 1], ["b", 2], ["c", 3]]),   # []
+    ]
+
+    # Format is (target, input)
+    inputs = [
+        ("a", [["a", 1], ["b", 2], ["c", 3]]),
+        ("d", [["a", 1], ["b", 2], ["c", 3]]),
+    ]
+
+    exp_outputs = [
+        ["a", 1],
+        [],
+    ]
+
+
+    for n, (inp, exp_out) in enumerate(zip(inputs, exp_outputs)):
+        print(n, leval(inp))
+        assert assoc(inp[0], inp[1]) == exp_out

@@ -2,7 +2,7 @@
 
 from typing import Any, List
 
-from hicopy import atom, leval
+from hicopy import atom, leval, assoc, pairlis
 
 
 example_inputs = [
@@ -22,8 +22,13 @@ example_inputs = [
     ["cond", [["eq", 1, 1], "true"], [["atom", ["quote", 2]], "false"], ["t", "default"]],
     ["cond", [["atom", ["quote", 2]], "cake"], ["t", "default"]],
     ["cond", [["atom", ["quote", [1, 2]]], "false"], ["t", "default"]],
+    # assoc 
+    assoc("a", [["a", 1], ["b", 2], ["c", 3]]),   # ["a", 1]
+    assoc("d", [["a", 1], ["b", 2], ["c", 3]]),   # []
+    # pairlis
+    pairlis(["x", "y"], [1, 2]),     # zip, so [[x, 1], [y, 2]]
+    pairlis(["x", "y"], [1, 2, 5]),  # zip, so [[x, 1], [y, 2]]
 ]
-
 
 
 
