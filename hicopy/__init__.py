@@ -7,6 +7,12 @@ car = lambda x: x[0]
 cdr = lambda x: x[1:]
 
 cons = lambda x, y: [x, y] if atom(y) else [x] + y
+
+# Since the implementation language is python we can translate these to list comprehensions
+#assoc = lambda x, y: car([cdr(i) for i in y if eq(car(i), x)] or [x])
+#pairlis = lambda x, y: [cons(x[i], y[i]) for i in range(len(x))]
+
+
 assoc = lambda x, y: (car(y) if eq(car(car(y)), x) else assoc(x, cdr(y))) if y else []
 pairlis = lambda x, y: cons(cons(car(x), car(y)), pairlis(cdr(x), cdr(y))) if x and y else []
 
@@ -29,6 +35,3 @@ def leval(x):
                 return leval(car(cdr(i)))
 
     return []
-
-
-
