@@ -23,17 +23,16 @@ example_inputs = [
     ["cond", [["atom", ["quote", 2]], "cake"], ["t", "default"]],
     ["cond", [["atom", ["quote", [1, 2]]], "false"], ["t", "default"]],
     # assoc 
-    assoc("a", [["a", 1], ["b", 2], ["c", 3]]),   # ["a", 1]
-    assoc("d", [["a", 1], ["b", 2], ["c", 3]]),   # []
-    # pairlis
-    pairlis(["x", "y"], [1, 2]),     # zip, so [[x, 1], [y, 2]]
-    pairlis(["x", "y"], [1, 2, 5]),  # zip, so [[x, 1], [y, 2]]
+    #assoc("a", [["a", 1], ["b", 2], ["c", 3]]),   # ["a", 1]
+    #assoc("d", [["a", 1], ["b", 2], ["c", 3]]),   # []
+    ## pairlis
+    #pairlis(["x", "y"], [1, 2]),     # zip, so [[x, 1], [y, 2]]
+    #pairlis(["x", "y"], [1, 2, 5]),  # zip, so [[x, 1], [y, 2]]
 ]
 
 
 
 def main(examples: List[Any]) -> None:
-    #from pudb import set_trace; set_trace()
     for n, ex in enumerate(examples):
         try:
             print(f"{n}: [{ex}] -> {leval(ex)}")
